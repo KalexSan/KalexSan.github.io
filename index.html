@@ -862,9 +862,37 @@
                 <!-- Controls: Language selector + Theme toggler -->
                 <div class="controls-wrapper">
                     <div class="lang-selector">
-                        <button class="lang-btn active" data-lang="pt" data-tooltip="Português">🇧🇷</button>
-                        <button class="lang-btn" data-lang="en" data-tooltip="English">🇺🇸</button>
-                        <button class="lang-btn" data-lang="es" data-tooltip="Español">🇪🇸</button>
+                        <button class="lang-btn active" data-lang="pt" data-tooltip="Português">
+                            <svg viewBox="0 0 512 512" width="20" height="20" style="border-radius: 50%; display: block;">
+                                <rect width="512" height="512" fill="#19ae47"/>
+                                <path d="M256 72L440 256 256 440 72 256z" fill="#fff15a"/>
+                                <circle cx="256" cy="256" r="92" fill="#1a3177"/>
+                                <path d="M164 256a92 92 0 00184 0z" fill="#fff"/>
+                                <path d="M164 256a92 92 0 00184 0z" fill="#1a3177" style="transform: translateY(6px);"/>
+                            </svg>
+                        </button>
+                        <button class="lang-btn" data-lang="en" data-tooltip="English">
+                            <svg viewBox="0 0 512 512" width="20" height="20" style="border-radius: 50%; display: block;">
+                                <rect width="512" height="512" fill="#fff"/>
+                                <path d="M0 0h512v37H0zm0 73h512v37H0zm0 73h512v37H0zm0 73h512v37H0zm0 73h512v37H0zm0 73h512v37H0zm0 73h512v37H0z" fill="#bd3d44"/>
+                                <rect width="220" height="256" fill="#192f5d"/>
+                                <polygon points="40 50 45 65 60 65 48 75 52 90 40 80 28 90 32 75 20 65 35 65" fill="#fff"/>
+                                <polygon points="110 50 115 65 130 65 118 75 122 90 110 80 98 90 102 75 90 65 105 65" fill="#fff"/>
+                                <polygon points="180 50 185 65 200 65 188 75 192 90 180 80 168 90 172 75 160 65 175 65" fill="#fff"/>
+                                <polygon points="75 120 80 135 95 135 83 145 87 160 75 150 63 160 67 145 55 135 70 135" fill="#fff"/>
+                                <polygon points="145 120 150 135 165 135 153 145 157 160 145 150 133 160 137 145 125 135 140 135" fill="#fff"/>
+                                <polygon points="40 190 45 205 60 205 48 215 52 230 40 220 28 230 32 215 20 205 35 205" fill="#fff"/>
+                                <polygon points="110 190 115 205 130 205 118 215 122 230 110 220 98 230 102 215 90 205 105 205" fill="#fff"/>
+                                <polygon points="180 190 185 205 200 205 188 215 192 230 180 220 168 230 172 215 160 205 175 205" fill="#fff"/>
+                            </svg>
+                        </button>
+                        <button class="lang-btn" data-lang="es" data-tooltip="Español">
+                            <svg viewBox="0 0 512 512" width="20" height="20" style="border-radius: 50%; display: block;">
+                                <rect width="512" height="512" fill="#c60b1e"/>
+                                <rect y="128" width="512" height="256" fill="#ffc400"/>
+                                <rect x="120" y="190" width="40" height="50" rx="10" ry="10" fill="#c60b1e" stroke="#fff" stroke-width="4"/>
+                            </svg>
+                        </button>
                     </div>
                     
                     <button class="theme-toggle-btn" id="theme-toggle" aria-label="Alternar modo de cor" data-tooltip="Alternar Tema">
@@ -897,7 +925,7 @@
                     <span data-i18n="about_title">Sobre Mim</span>
                 </h2>
                 <p class="about-text" data-i18n="about_text_1">
-                    Olá! Meu nome é <strong>Alex Sander</strong>, tenho 25 anos. Atualmente resido em Pérola Independente e passo a maior parte do meu tempo em Toledo, onde trabalho e curso <strong>Tecnologia em Sistemas para Internet (TSI)</strong> na <strong>UTFPR</strong>.
+                    Olá! Meu nome é <strong>Alex Sander</strong>, tenho 29 anos. Atualmente resido em Pérola Independente e passo a maior parte do meu tempo em Toledo, onde trabalho e curso <strong>Tecnologia em Sistemas para Internet (TSI)</strong> na <strong>UTFPR</strong>.
                 </p>
                 <p class="about-text" data-i18n="about_text_2">
                     Minha paixão por tecnologia é imensa. Gosto de bons jogos para distrair a mente, mas o meu verdadeiro foco é evoluir constantemente como desenvolvedor de software, entendendo a fundo as funções de cada sistema. 
@@ -1098,7 +1126,7 @@
                 theme_light: "Modo Claro",
                 theme_dark: "Modo Escuro",
                 about_title: "Sobre Mim",
-                about_text_1: "Olá! Meu nome é <strong>Alex Sander</strong>, tenho 25 anos. Atualmente resido em Pérola Independente e passo a maior parte do meu tempo em Toledo, onde trabalho e curso <strong>Tecnologia em Sistemas para Internet (TSI)</strong> na <strong>UTFPR</strong>.",
+                about_text_1: "Olá! Meu nome é <strong>Alex Sander</strong>, tenho 29 anos. Atualmente resido em Pérola Independente e passo a maior parte do meu tempo em Toledo, onde trabalho e curso <strong>Tecnologia em Sistemas para Internet (TSI)</strong> na <strong>UTFPR</strong>.",
                 about_text_2: "Minha paixão por tecnologia é imensa. Gosto de bons jogos para distrair a mente, mas o meu verdadeiro foco é evoluir constantemente como desenvolvedor de software, entendendo a fundo as funções de cada sistema.",
                 about_text_3: "Se eu empaco em algum problema, não desisto: continuo pesquisando, testando e tentando até encontrar a melhor solução.",
                 about_creative_title: "Aptidões Criativas & Design",
@@ -1139,7 +1167,7 @@
                 theme_light: "Light Mode",
                 theme_dark: "Dark Mode",
                 about_title: "About Me",
-                about_text_1: "Hello! My name is <strong>Alex Sander</strong>, I'm 25 years old. Currently residing in Pérola Independente, I spend most of my time in Toledo, where I work and study <strong>Internet Systems Technology (TSI)</strong> at <strong>UTFPR</strong>.",
+                about_text_1: "Hello! My name is <strong>Alex Sander</strong>, I'm 29 years old. Currently residing in Pérola Independente, I spend most of my time in Toledo, where I work and study <strong>Internet Systems Technology (TSI)</strong> at <strong>UTFPR</strong>.",
                 about_text_2: "My passion for technology is immense. I enjoy good games to clear my mind, but my true focus is to constantly evolve as a software developer, deeply understanding the functions of each system.",
                 about_text_3: "If I get stuck on a problem, I don't give up: I keep researching, testing, and trying until I find the best solution.",
                 about_creative_title: "Creative Aptitude & Design",
@@ -1180,7 +1208,7 @@
                 theme_light: "Modo Claro",
                 theme_dark: "Modo Oscuro",
                 about_title: "Sobre Mí",
-                about_text_1: "¡Hola! Mi nombre es <strong>Alex Sander</strong>, tengo 25 años. Actualmente resido en Pérola Independente y paso la mayor parte de mi tiempo en Toledo, donde trabajo y estudio <strong>Tecnología en Sistemas para Internet (TSI)</strong> en la <strong>UTFPR</strong>.",
+                about_text_1: "¡Hola! Mi nombre es <strong>Alex Sander</strong>, tengo 29 años. Actualmente resido en Pérola Independente y paso la mayor parte de mi tiempo en Toledo, donde trabajo y estudio <strong>Tecnología en Sistemas para Internet (TSI)</strong> en la <strong>UTFPR</strong>.",
                 about_text_2: "Mi pasión por la tecnología es inmensa. Disfruto de buenos juegos para despejar la mente, pero mi verdadero enfoque es evolucionar constantemente como desarrollador de software, comprendiendo a fondo las funciones de cada sistema.",
                 about_text_3: "Si me quedo atascado en un problema, no me rindo: sigo investigando, probando e intentándolo hasta encontrar la mejor solución.",
                 about_creative_title: "Aptitudes Creativas y Diseño",
