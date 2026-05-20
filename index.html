@@ -48,11 +48,16 @@
             --badge-be-text: #f9a8d4;
             --badge-db-bg: rgba(20, 184, 166, 0.12);
             --badge-db-text: #99f6e4;
+            --badge-other-bg: rgba(244, 63, 94, 0.12);
+            --badge-other-text: #fca5a5;
             
             --quote-bg: rgba(236, 72, 153, 0.03);
             --quote-border: #ec4899;
             --shadow-color: rgba(0, 0, 0, 0.5);
             --glow-color: rgba(99, 102, 241, 0.15);
+            
+            --tooltip-bg: #1f2937;
+            --tooltip-text: #ffffff;
         }
 
         [data-theme="light"] {
@@ -72,11 +77,16 @@
             --badge-be-text: #db2777;
             --badge-db-bg: rgba(13, 148, 136, 0.08);
             --badge-db-text: #0d9488;
+            --badge-other-bg: rgba(225, 29, 72, 0.08);
+            --badge-other-text: #e11d48;
             
             --quote-bg: rgba(219, 39, 119, 0.03);
             --quote-border: #db2777;
             --shadow-color: rgba(15, 23, 42, 0.08);
             --glow-color: rgba(79, 70, 229, 0.08);
+            
+            --tooltip-bg: #ffffff;
+            --tooltip-text: #0f172a;
         }
 
         body {
@@ -109,7 +119,7 @@
 
         /* GRID LAYOUT */
         .container {
-            max-width: 1100px;
+            max-width: 1150px;
             margin: 0 auto;
             padding: 3rem 1.5rem;
             display: grid;
@@ -214,26 +224,98 @@
             margin: 1.5rem 0;
         }
 
+        /* CONTROLS (THEME + LANG) */
+        .controls-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .lang-selector {
+            display: flex;
+            gap: 0.25rem;
+            border: 1px solid var(--card-border);
+            padding: 0.25rem;
+            border-radius: 2rem;
+            background-color: rgba(0, 0, 0, 0.15);
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            transform: scale(1.15);
+            background-color: var(--card-border);
+        }
+
+        .lang-btn.active {
+            background-color: var(--card-border);
+            box-shadow: 0 0 8px var(--glow-color);
+        }
+
+        /* CUSTOM TOOLTIPS */
+        .lang-btn[data-tooltip]::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%) translateY(4px);
+            background-color: var(--tooltip-bg);
+            color: var(--tooltip-text);
+            font-size: 0.75rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 500;
+            padding: 0.3rem 0.6rem;
+            border-radius: 0.25rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            border: 1px solid var(--card-border);
+            z-index: 100;
+        }
+
+        .lang-btn[data-tooltip]:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
         /* THEME TOGGLE */
         .theme-toggle-btn {
             background: none;
             border: 1px solid var(--card-border);
             color: var(--text-main);
-            padding: 0.6rem 1.2rem;
-            border-radius: 2rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
+            justify-content: center;
+            font-size: 1.05rem;
             transition: all 0.3s ease;
+            background-color: rgba(0, 0, 0, 0.15);
         }
 
         .theme-toggle-btn:hover {
             background-color: var(--card-border);
-            transform: translateY(-2px);
+            transform: scale(1.08) rotate(15deg);
         }
 
         /* SOCIAL LINKS */
@@ -312,6 +394,20 @@
             text-align: justify;
         }
 
+        /* SUBSECTION CREATIVE */
+        .about-subsection {
+            margin-top: 1.5rem;
+            padding-top: 1.25rem;
+            border-top: 1px dashed var(--card-border);
+        }
+
+        .subsection-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
         /* SKILL CATEGORIES & BADGES */
         .skills-grid {
             display: grid;
@@ -380,6 +476,111 @@
         .badge-db:hover {
             border-color: var(--accent-cyan);
             box-shadow: 0 4px 12px rgba(20, 184, 166, 0.2);
+        }
+
+        .badge-other {
+            background-color: var(--badge-other-bg);
+            color: var(--badge-other-text);
+            border-color: rgba(244, 63, 94, 0.15);
+        }
+        .badge-other:hover {
+            border-color: var(--accent-pink);
+            box-shadow: 0 4px 12px rgba(244, 63, 94, 0.2);
+        }
+
+        /* TIMELINE (EXPERIENCE & EDUCATION) */
+        .timeline {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            bottom: 5px;
+            width: 2px;
+            background-color: var(--card-border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -1.5rem;
+            left: calc(-1.5rem - 4px);
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--accent-indigo);
+            border: 2px solid var(--bg-color);
+            box-shadow: 0 0 8px var(--accent-indigo);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .timeline-company {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--accent-indigo);
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background-color: var(--card-border);
+            padding: 0.2rem 0.6rem;
+            border-radius: 2rem;
+            font-weight: 500;
+        }
+
+        .timeline-list {
+            list-style: none;
+            padding-left: 0.25rem;
+        }
+
+        .timeline-list li {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .timeline-list li::before {
+            content: "•";
+            color: var(--accent-pink);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .timeline-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
         }
 
         /* PROJECTS GRID (GITHUB DYNAMIC) */
@@ -626,6 +827,14 @@
                 width: 300px;
                 height: 300px;
             }
+            .timeline-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+            .timeline-date {
+                margin-top: 0.25rem;
+            }
         }
     </style>
 </head>
@@ -644,16 +853,24 @@
                 
                 <div class="status-badge">
                     <span class="status-dot"></span>
-                    Estudante TSI @ UTFPR
+                    <span data-i18n="status_text">Estudante TSI @ UTFPR</span>
                 </div>
                 
                 <h1 class="profile-name">Alex Sander</h1>
-                <p class="profile-title">Desenvolvedor de Software</p>
+                <p class="profile-title" data-i18n="profile_title">Desenvolvedor de Software</p>
                 
-                <button class="theme-toggle-btn" id="theme-toggle" aria-label="Alternar modo de cor">
-                    <span id="theme-icon">☀️</span>
-                    <span id="theme-text">Modo Claro</span>
-                </button>
+                <!-- Controls: Language selector + Theme toggler -->
+                <div class="controls-wrapper">
+                    <div class="lang-selector">
+                        <button class="lang-btn active" data-lang="pt" data-tooltip="Português">🇧🇷</button>
+                        <button class="lang-btn" data-lang="en" data-tooltip="English">🇺🇸</button>
+                        <button class="lang-btn" data-lang="es" data-tooltip="Español">🇪🇸</button>
+                    </div>
+                    
+                    <button class="theme-toggle-btn" id="theme-toggle" aria-label="Alternar modo de cor" data-tooltip="Alternar Tema">
+                        <span id="theme-icon">☀️</span>
+                    </button>
+                </div>
                 
                 <div class="divider"></div>
                 
@@ -677,33 +894,95 @@
             <section class="card">
                 <h2 class="section-title">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                    Sobre Mim
+                    <span data-i18n="about_title">Sobre Mim</span>
                 </h2>
-                <p class="about-text">
+                <p class="about-text" data-i18n="about_text_1">
                     Olá! Meu nome é <strong>Alex Sander</strong>, tenho 25 anos. Atualmente resido em Pérola Independente e passo a maior parte do meu tempo em Toledo, onde trabalho e curso <strong>Tecnologia em Sistemas para Internet (TSI)</strong> na <strong>UTFPR</strong>.
                 </p>
-                <p class="about-text">
+                <p class="about-text" data-i18n="about_text_2">
                     Minha paixão por tecnologia é imensa. Gosto de bons jogos para distrair a mente, mas o meu verdadeiro foco é evoluir constantemente como desenvolvedor de software, entendendo a fundo as funções de cada sistema. 
                 </p>
-                <p class="about-text">
+                <p class="about-text" data-i18n="about_text_3">
                     Se eu empaco em algum problema, não desisto: continuo pesquisando, testando e tentando até encontrar a melhor solução.
                 </p>
+                
+                <!-- Nova subseção baseada nos PDFs (Aptidões Artísticas/Design) -->
+                <div class="about-subsection">
+                    <h3 class="subsection-title" data-i18n="about_creative_title">Aptidões Criativas & Design</h3>
+                    <p class="about-text" style="margin-bottom: 0;" data-i18n="about_creative_text">
+                        Além do código, tenho grande afinidade com o desenho como expressão pessoal. Possuo um senso estético apurado e facilidade com composição visual e proporções, o que agrega muito valor na criação de interfaces (UI/UX) e na percepção crítica do design.
+                    </p>
+                </div>
+            </section>
+
+            <!-- EXPERIÊNCIA CARD (NOVO) -->
+            <section class="card">
+                <h2 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                    <span data-i18n="experience_title">Experiência Profissional</span>
+                </h2>
+                
+                <div class="timeline">
+                    <!-- FZCommerce -->
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="timeline-title" data-i18n="exp_job_title">Desenvolvedor Front-End & Suporte</h3>
+                                <span class="timeline-company" data-i18n="exp_job_company">FZCommerce — Desenvolvimento Web e E-commerce</span>
+                            </div>
+                            <span class="timeline-date" data-i18n="exp_job_date">Jan 2025 - Presente</span>
+                        </div>
+                        <ul class="timeline-list">
+                            <li data-i18n="exp_job_desc_1">Responsável pelo desenvolvimento de interfaces e componentização modular e tipada utilizando um ecossistema moderno de <strong>React</strong> e <strong>TypeScript</strong> com estilizações avançadas em <strong>SCSS</strong>.</li>
+                            <li data-i18n="exp_job_desc_2">Desenvolvimento de soluções personalizadas e customizadas sob a plataforma <strong>VTEX IO</strong> e consumo/integração de APIs com GraphQL.</li>
+                            <li data-i18n="exp_job_desc_3">Implementação de middlewares e integrações de autenticação robustas em <strong>PHP</strong> utilizando tokens criptografados (JWT) e protocolo <strong>OAuth 2.0</strong> para sincronização de dados (ex: integração Mercafácil/VTEX).</li>
+                            <li data-i18n="exp_job_desc_4">Atuação direta em grandes portais de e-commerce, como a manutenção da operação da <strong>Biscoitê</strong>.</li>
+                            <li data-i18n="exp_job_desc_5">Análise proativa de bugs em ambientes de produção, suporte técnico interno ao time de desenvolvimento, execução de testes manuais/de qualidade (QA) e documentação de processos.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FORMAÇÃO CARD (NOVO) -->
+            <section class="card">
+                <h2 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path></svg>
+                    <span data-i18n="education_title">Formação Acadêmica</span>
+                </h2>
+                
+                <div class="timeline">
+                    <!-- UTFPR -->
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="timeline-title" data-i18n="edu_course_title">Tecnologia em Sistemas para Internet</h3>
+                                <span class="timeline-company" data-i18n="edu_course_institution">Universidade Tecnológica Federal do Paraná (UTFPR) — Campus Toledo</span>
+                            </div>
+                            <span class="timeline-date" data-i18n="edu_course_date">2022 - Presente</span>
+                        </div>
+                        <p class="timeline-desc" data-i18n="edu_course_desc">
+                            Foco prático em desenvolvimento web (Frontend e Backend), lógica e algoritmos, banco de dados, infraestrutura web, segurança de redes, comércio eletrônico, desenvolvimento para dispositivos móveis e gestão de projetos.
+                        </p>
+                    </div>
+                </div>
             </section>
 
             <!-- TECH STACK CARD -->
             <section class="card">
                 <h2 class="section-title">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                    Habilidades & Tecnologias
+                    <span data-i18n="skills_title">Habilidades & Tecnologias</span>
                 </h2>
                 
                 <div class="skills-grid">
                     <!-- Frontend -->
                     <div class="skill-category">
-                        <h3 class="category-name">Frontend</h3>
+                        <h3 class="category-name" data-i18n="skills_fe">Frontend</h3>
                         <div class="badges-wrapper">
-                            <span class="skill-badge badge-fe">HTML</span>
-                            <span class="skill-badge badge-fe">CSS</span>
+                            <span class="skill-badge badge-fe">HTML5</span>
+                            <span class="skill-badge badge-fe">CSS3</span>
                             <span class="skill-badge badge-fe">SCSS</span>
                             <span class="skill-badge badge-fe">JavaScript</span>
                             <span class="skill-badge badge-fe">TypeScript</span>
@@ -713,7 +992,7 @@
 
                     <!-- Backend -->
                     <div class="skill-category">
-                        <h3 class="category-name">Backend</h3>
+                        <h3 class="category-name" data-i18n="skills_be">Backend</h3>
                         <div class="badges-wrapper">
                             <span class="skill-badge badge-be">Java</span>
                             <span class="skill-badge badge-be">Spring Boot</span>
@@ -724,14 +1003,28 @@
                         </div>
                     </div>
 
-                    <!-- Bancos de Dados & Outros -->
+                    <!-- Bancos de Dados -->
                     <div class="skill-category">
-                        <h3 class="category-name">Bancos de Dados & Armazenamento</h3>
+                        <h3 class="category-name" data-i18n="skills_db">Bancos de Dados & Armazenamento</h3>
                         <div class="badges-wrapper">
                             <span class="skill-badge badge-db">SQL</span>
                             <span class="skill-badge badge-db">MySQL</span>
                             <span class="skill-badge badge-db">PostgreSQL</span>
                             <span class="skill-badge badge-db">MongoDB</span>
+                        </div>
+                    </div>
+
+                    <!-- E-commerce & Ferramentas (Baseado nos PDFs) -->
+                    <div class="skill-category">
+                        <h3 class="category-name" data-i18n="skills_other">Plataformas & Ferramentas</h3>
+                        <div class="badges-wrapper">
+                            <span class="skill-badge badge-other">VTEX IO</span>
+                            <span class="skill-badge badge-other">Shopify</span>
+                            <span class="skill-badge badge-other">WordPress</span>
+                            <span class="skill-badge badge-other">Docker</span>
+                            <span class="skill-badge badge-other">Git</span>
+                            <span class="skill-badge badge-other">GraphQL</span>
+                            <span class="skill-badge badge-other">Scrum</span>
                         </div>
                     </div>
                 </div>
@@ -741,7 +1034,7 @@
             <section class="card">
                 <h2 class="section-title">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                    Projetos no GitHub
+                    <span data-i18n="projects_title">Projetos no GitHub</span>
                 </h2>
                 
                 <!-- Skeleton loader de carregamento -->
@@ -775,10 +1068,10 @@
             <!-- CITAÇÃO CARD -->
             <section class="card quote-card">
                 <span class="quote-icon">“</span>
-                <p class="quote-text">
+                <p class="quote-text" data-i18n="quote_text">
                     "A persistência é o caminho do êxito."
                 </p>
-                <p class="quote-author">
+                <p class="quote-author" data-i18n="quote_author">
                     — Charles Chaplin, <cite>Vida e Pensamentos (1997, p. 118)</cite>
                 </p>
             </section>
@@ -787,7 +1080,7 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-        <p>&copy; 2026 Alex Sander Leite de Almeida. Feito com persistência e tecnologia.</p>
+        <p>&copy; 2026 Alex Sander Leite de Almeida. <span data-i18n="footer_text">Feito com persistência e tecnologia.</span></p>
         <div class="footer-nav">
             <a href="https://github.com/KalexSan" target="_blank">GitHub</a>
             <a href="https://www.linkedin.com/in/alex-sander-892847bb" target="_blank">LinkedIn</a>
@@ -797,21 +1090,193 @@
 
     <!-- INTERACTION SCRIPTS -->
     <script>
+        // Dicionário de Traduções (PT, EN, ES)
+        const translations = {
+            pt: {
+                status_text: "Estudante TSI @ UTFPR",
+                profile_title: "Desenvolvedor de Software",
+                theme_light: "Modo Claro",
+                theme_dark: "Modo Escuro",
+                about_title: "Sobre Mim",
+                about_text_1: "Olá! Meu nome é <strong>Alex Sander</strong>, tenho 25 anos. Atualmente resido em Pérola Independente e passo a maior parte do meu tempo em Toledo, onde trabalho e curso <strong>Tecnologia em Sistemas para Internet (TSI)</strong> na <strong>UTFPR</strong>.",
+                about_text_2: "Minha paixão por tecnologia é imensa. Gosto de bons jogos para distrair a mente, mas o meu verdadeiro foco é evoluir constantemente como desenvolvedor de software, entendendo a fundo as funções de cada sistema.",
+                about_text_3: "Se eu empaco em algum problema, não desisto: continuo pesquisando, testando e tentando até encontrar a melhor solução.",
+                about_creative_title: "Aptidões Criativas & Design",
+                about_creative_text: "Além do código, tenho grande afinidade com o desenho como expressão pessoal. Possuo um senso estético apurado e facilidade com composição visual e proporções, o que agrega muito valor na criação de interfaces (UI/UX) e na percepção crítica do design.",
+                skills_title: "Habilidades & Tecnologias",
+                skills_fe: "Frontend",
+                skills_be: "Backend",
+                skills_db: "Bancos de Dados & Armazenamento",
+                skills_other: "Plataformas & Ferramentas",
+                projects_title: "Projetos no GitHub",
+                projects_fallback_title: "Visualizar Projetos",
+                projects_fallback_desc: "Os repositorios privados não são exibidos publicamente. Em breve novos projetos Java estarão aqui!",
+                projects_fallback_btn: "Ver Repositórios no GitHub",
+                projects_error_title: "Visualizar Projetos",
+                projects_error_desc: "Não foi possível carregar os projetos no momento. Clique no botão abaixo para visualizá-los diretamente no meu perfil do GitHub.",
+                projects_error_btn: "Ir para o GitHub",
+                experience_title: "Experiência Profissional",
+                exp_job_title: "Desenvolvedor Front-End & Suporte",
+                exp_job_company: "FZCommerce — Desenvolvimento Web e E-commerce",
+                exp_job_date: "Jan 2025 - Presente",
+                exp_job_desc_1: "Responsável pelo desenvolvimento de interfaces e componentização modular e tipada utilizando um ecossistema moderno de <strong>React</strong> e <strong>TypeScript</strong> com estilizações avançadas em <strong>SCSS</strong>.",
+                exp_job_desc_2: "Desenvolvimento de soluções personalizadas e customizadas sob a plataforma <strong>VTEX IO</strong> e consumo/integração de APIs com GraphQL.",
+                exp_job_desc_3: "Implementação de middlewares e integrações de autenticação robustas em <strong>PHP</strong> utilizando tokens criptografados (JWT) e protocolo <strong>OAuth 2.0</strong> para sincronização de dados (ex: integração Mercafácil/VTEX).",
+                exp_job_desc_4: "Atuação direta em grandes portais de e-commerce, como a manutenção da operação da <strong>Biscoitê</strong>.",
+                exp_job_desc_5: "Análise proativa de bugs em ambientes de produção, suporte técnico interno ao time de desenvolvimento, execução de testes manuais/de qualidade (QA) e documentação de processos.",
+                education_title: "Formação Acadêmica",
+                edu_course_title: "Tecnologia em Sistemas para Internet",
+                edu_course_institution: "Universidade Tecnológica Federal do Paraná (UTFPR) — Campus Toledo",
+                edu_course_date: "2022 - Presente",
+                edu_course_desc: "Foco prático em desenvolvimento web (Frontend e Backend), lógica e algoritmos, banco de dados, infraestrutura web, segurança de redes, comércio eletrônico, desenvolvimento para dispositivos móveis e gestão de projetos.",
+                quote_text: "\"A persistência é o caminho do êxito.\"",
+                quote_author: "— Charles Chaplin, <cite>Vida e Pensamentos (1997, p. 118)</cite>",
+                footer_text: "Feito com persistência e tecnologia."
+            },
+            en: {
+                status_text: "TSI Student @ UTFPR",
+                profile_title: "Software Developer",
+                theme_light: "Light Mode",
+                theme_dark: "Dark Mode",
+                about_title: "About Me",
+                about_text_1: "Hello! My name is <strong>Alex Sander</strong>, I'm 25 years old. Currently residing in Pérola Independente, I spend most of my time in Toledo, where I work and study <strong>Internet Systems Technology (TSI)</strong> at <strong>UTFPR</strong>.",
+                about_text_2: "My passion for technology is immense. I enjoy good games to clear my mind, but my true focus is to constantly evolve as a software developer, deeply understanding the functions of each system.",
+                about_text_3: "If I get stuck on a problem, I don't give up: I keep researching, testing, and trying until I find the best solution.",
+                about_creative_title: "Creative Aptitude & Design",
+                about_creative_text: "Beyond code, I have a strong affinity for drawing as a form of personal expression. I possess a refined aesthetic sense and ease with visual composition and proportions, which adds significant value to interface design (UI/UX) and critical design perception.",
+                skills_title: "Skills & Tech Stack",
+                skills_fe: "Frontend",
+                skills_be: "Backend",
+                skills_db: "Databases & Storage",
+                skills_other: "Platforms & Tools",
+                projects_title: "GitHub Projects",
+                projects_fallback_title: "View Projects",
+                projects_fallback_desc: "Private repositories are not displayed publicly. New Java projects will be here soon!",
+                projects_fallback_btn: "View Repositories on GitHub",
+                projects_error_title: "View Projects",
+                projects_error_desc: "Could not load projects at the moment. Click the button below to view them directly on my GitHub profile.",
+                projects_error_btn: "Go to GitHub",
+                experience_title: "Work Experience",
+                exp_job_title: "Front-End Developer & Support",
+                exp_job_company: "FZCommerce — Web Development and E-commerce",
+                exp_job_date: "Jan 2025 - Present",
+                exp_job_desc_1: "Responsible for interface development and modular, typed component creation using a modern <strong>React</strong> and <strong>TypeScript</strong> ecosystem with advanced styling in <strong>SCSS</strong>.",
+                exp_job_desc_2: "Development of custom solutions under the <strong>VTEX IO</strong> platform and API consumption/integration with GraphQL.",
+                exp_job_desc_3: "Implementation of robust integration and authentication middlewares in <strong>PHP</strong> using encrypted tokens (JWT) and <strong>OAuth 2.0</strong> protocol for data synchronization (e.g., Mercafácil/VTEX integration).",
+                exp_job_desc_4: "Direct involvement in major e-commerce websites, such as maintaining operations for <strong>Biscoitê</strong>.",
+                exp_job_desc_5: "Proactive bug analysis in production environments, internal technical support to the development team, manual/quality assurance (QA) testing, and process documentation.",
+                education_title: "Education",
+                edu_course_title: "Internet Systems Technology",
+                edu_course_institution: "Federal University of Technology - Paraná (UTFPR) — Toledo Campus",
+                edu_course_date: "2022 - Present",
+                edu_course_desc: "Practical focus on web development (Frontend and Backend), logic and algorithms, databases, web infrastructure, network security, e-commerce, mobile application development, and project management.",
+                quote_text: "\"Persistence is the path to success.\"",
+                quote_author: "— Charles Chaplin, <cite>Life and Thoughts (1997, p. 118)</cite>",
+                footer_text: "Made with persistence and technology."
+            },
+            es: {
+                status_text: "Estudiante TSI @ UTFPR",
+                profile_title: "Desarrollador de Software",
+                theme_light: "Modo Claro",
+                theme_dark: "Modo Oscuro",
+                about_title: "Sobre Mí",
+                about_text_1: "¡Hola! Mi nombre es <strong>Alex Sander</strong>, tengo 25 años. Actualmente resido en Pérola Independente y paso la mayor parte de mi tiempo en Toledo, donde trabajo y estudio <strong>Tecnología en Sistemas para Internet (TSI)</strong> en la <strong>UTFPR</strong>.",
+                about_text_2: "Mi pasión por la tecnología es inmensa. Disfruto de buenos juegos para despejar la mente, pero mi verdadero enfoque es evolucionar constantemente como desarrollador de software, comprendiendo a fondo las funciones de cada sistema.",
+                about_text_3: "Si me quedo atascado en un problema, no me rindo: sigo investigando, probando e intentándolo hasta encontrar la mejor solución.",
+                about_creative_title: "Aptitudes Creativas y Diseño",
+                about_creative_text: "Más allá del código, tengo una gran afinidad por el dibujo como expresión personal. Poseo un sentido estético refinado y facilidad con la composición visual y las proporciones, lo que agrega un valor significativo al desarrollo de interfaces (UI/UX) y a la percepción crítica del diseño.",
+                skills_title: "Habilidades y Tecnologías",
+                skills_fe: "Frontend",
+                skills_be: "Backend",
+                skills_db: "Bases de Datos y Almacenamiento",
+                skills_other: "Plataformas y Herramientas",
+                projects_title: "Proyectos en GitHub",
+                projects_fallback_title: "Ver Proyectos",
+                projects_fallback_desc: "Los repositorios privados no se muestran públicamente. ¡Pronto habrá nuevos proyectos de Java aquí!",
+                projects_fallback_btn: "Ver Repositorios en GitHub",
+                projects_error_title: "Ver Proyectos",
+                projects_error_desc: "No se pudieron cargar los proyectos en este momento. Haga clic en el botón de abajo para verlos directamente en mi perfil de GitHub.",
+                projects_error_btn: "Ir a GitHub",
+                experience_title: "Experiencia Profesional",
+                exp_job_title: "Desarrollador Front-End y Soporte",
+                exp_job_company: "FZCommerce — Desarrollo Web y Comercio Electrónico",
+                exp_job_date: "Ene 2025 - Presente",
+                exp_job_desc_1: "Responsable del desarrollo de interfaces y creación de componentes modulares y tipados utilizando un ecosistema moderno de <strong>React</strong> y <strong>TypeScript</strong> con estilos avanzados en <strong>SCSS</strong>.",
+                exp_job_desc_2: "Desarrollo de soluciones personalizadas bajo la plataforma <strong>VTEX IO</strong> e integración/consumo de APIs con GraphQL.",
+                exp_job_desc_3: "Implementación de middlewares e integraciones de autenticación robustas en <strong>PHP</strong> utilizando tokens encriptados (JWT) y protocolo <strong>OAuth 2.0</strong> para la sincronización de datos (ej. integración Mercafácil/VTEX).",
+                exp_job_desc_4: "Participación directa en grandes portales de comercio electrónico, como el mantenimiento de la operación de <strong>Biscoitê</strong>.",
+                exp_job_desc_5: "Análisis proactivo de errores en entornos de producción, soporte técnico interno al equipo de desarrollo, realización de pruebas manuales/de calidad (QA) y documentación de procesos.",
+                education_title: "Educación",
+                edu_course_title: "Tecnología en Sistemas para Internet",
+                edu_course_institution: "Universidad Tecnológica Federal de Paraná (UTFPR) — Campus Toledo",
+                edu_course_date: "2022 - Presente",
+                edu_course_desc: "Enfoque práctico en desarrollo web (Frontend y Backend), lógica y algoritmos, bases de datos, infraestructura web, seguridad de redes, comercio electrónico, desarrollo móvil y gestión de proyectos.",
+                quote_text: "\"La persistencia es el camino del éxito.\"",
+                quote_author: "— Charles Chaplin, <cite>Vida y Pensamientos (1997, p. 118)</cite>",
+                footer_text: "Hecho con persistencia y tecnología."
+            }
+        };
+
+        // Estado do Idioma Ativo
+        let currentLang = localStorage.getItem('lang') || 'pt';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            document.documentElement.setAttribute('lang', lang === 'pt' ? 'pt-br' : lang);
+
+            // Atualizar classes dos botões seletores
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Atualizar todos os textos com data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Atualizar o botão de Tema Escuro/Claro (que tem texto dinâmico dependendo do tema atual)
+            updateThemeButtonText();
+            
+            // Recarregar os projetos para traduzir a mensagem de fallback se aplicável
+            if (typeof fetchProjects === 'function') {
+                // Atualizar dinamicamente o título do botão de alternância do tema no tooltip
+                document.getElementById('theme-toggle').setAttribute('data-tooltip', lang === 'pt' ? 'Alternar Tema' : lang === 'en' ? 'Toggle Theme' : 'Alternar Tema');
+            }
+        }
+
+        // Configurar Event Listeners dos botões de idioma
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                setLanguage(btn.getAttribute('data-lang'));
+            });
+        });
+
+
         // Tema Escuro / Claro
         const themeToggle = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
-        const themeText = document.getElementById('theme-text');
         
+        function updateThemeButtonText() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                themeIcon.textContent = '🌙';
+            } else {
+                themeIcon.textContent = '☀️';
+            }
+        }
+
         function setTheme(theme) {
             document.documentElement.setAttribute('data-theme', theme);
             localStorage.setItem('theme', theme);
-            if (theme === 'light') {
-                themeIcon.textContent = '🌙';
-                themeText.textContent = 'Modo Escuro';
-            } else {
-                themeIcon.textContent = '☀️';
-                themeText.textContent = 'Modo Claro';
-            }
+            updateThemeButtonText();
         }
 
         // Carregar tema preferido
@@ -822,6 +1287,10 @@
             const currentTheme = document.documentElement.getAttribute('data-theme');
             setTheme(currentTheme === 'dark' ? 'light' : 'dark');
         });
+
+        // Inicializar idioma no carregamento
+        setLanguage(currentLang);
+
 
         // Integração Dinâmica com GitHub
         const username = 'KalexSan';
@@ -844,9 +1313,9 @@
                 if (filteredRepos.length === 0) {
                     projectsContainer.innerHTML = `
                         <div class="project-card-fallback">
-                            <h3>Nenhum repositório público</h3>
-                            <p>Os repositórios privados não são exibidos publicamente. Em breve novos projetos Java estarão aqui!</p>
-                            <a href="https://github.com/KalexSan?tab=repositories" target="_blank" class="fallback-btn">Ver Repositórios no GitHub</a>
+                            <h3 data-i18n="projects_fallback_title">${translations[currentLang].projects_fallback_title}</h3>
+                            <p data-i18n="projects_fallback_desc">${translations[currentLang].projects_fallback_desc}</p>
+                            <a href="https://github.com/KalexSan?tab=repositories" target="_blank" class="fallback-btn" data-i18n="projects_fallback_btn">${translations[currentLang].projects_fallback_btn}</a>
                         </div>
                     `;
                 } else {
@@ -885,9 +1354,9 @@
                 console.error('Erro ao buscar do GitHub:', error);
                 projectsContainer.innerHTML = `
                     <div class="project-card-fallback">
-                        <h3>Visualizar Projetos</h3>
-                        <p>Não foi possível carregar os projetos no momento. Clique no botão abaixo para visualizá-los diretamente no meu perfil do GitHub.</p>
-                        <a href="https://github.com/KalexSan" target="_blank" class="fallback-btn">Ir para o GitHub</a>
+                        <h3 data-i18n="projects_error_title">${translations[currentLang].projects_error_title}</h3>
+                        <p data-i18n="projects_error_desc">${translations[currentLang].projects_error_desc}</p>
+                        <a href="https://github.com/KalexSan" target="_blank" class="fallback-btn" data-i18n="projects_error_btn">${translations[currentLang].projects_error_btn}</a>
                     </div>
                 `;
             } finally {
