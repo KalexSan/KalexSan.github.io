@@ -154,6 +154,80 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        /* Animated background blobs inside profile container */
+        .profile-container::before,
+        .profile-container::after {
+            content: '';
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(40px);
+            pointer-events: none;
+            transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Blob 1 - Top Left */
+        .profile-container::before {
+            top: -20px;
+            left: -20px;
+            animation: float-blob-1 10s ease-in-out infinite alternate;
+        }
+
+        /* Blob 2 - Bottom Right */
+        .profile-container::after {
+            bottom: -20px;
+            right: -20px;
+            animation: float-blob-2 14s ease-in-out infinite alternate;
+        }
+
+        /* Theme-based colors and opacity for blobs */
+        [data-theme="dark"] .profile-container::before {
+            background: radial-gradient(circle, var(--accent-indigo) 0%, transparent 80%);
+            opacity: 0.22;
+        }
+        [data-theme="dark"] .profile-container::after {
+            background: radial-gradient(circle, var(--accent-pink) 0%, transparent 80%);
+            opacity: 0.15;
+        }
+
+        [data-theme="light"] .profile-container::before {
+            background: radial-gradient(circle, #3b82f6 0%, transparent 80%); /* Vibrant blue */
+            opacity: 0.28;
+        }
+        [data-theme="light"] .profile-container::after {
+            background: radial-gradient(circle, #ec4899 0%, transparent 80%); /* Vibrant pink */
+            opacity: 0.18;
+        }
+
+        @keyframes float-blob-1 {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(25px, 30px) scale(1.15);
+            }
+            100% {
+                transform: translate(-10px, 15px) scale(0.9);
+            }
+        }
+
+        @keyframes float-blob-2 {
+            0% {
+                transform: translate(0, 0) scale(1.1);
+            }
+            50% {
+                transform: translate(-30px, -20px) scale(0.85);
+            }
+            100% {
+                transform: translate(15px, -10px) scale(1.1);
+            }
         }
 
         .avatar-wrapper {
